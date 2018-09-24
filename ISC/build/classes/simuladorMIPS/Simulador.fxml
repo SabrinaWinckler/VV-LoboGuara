@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="536.0" prefWidth="1024.0" stylesheets="@../../../../Facul/TSSIKeyGen/src/styles/styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="simuladorMIPS.SimuladorController">
+   <top>
+      <HBox prefHeight="45.0" prefWidth="1024.0" styleClass="painel" stylesheets="@../styles/paineis.css" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <HBox prefHeight="286.0" prefWidth="762.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="painelImagem" fitHeight="402.0" fitWidth="565.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="80.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </center>
+   <right>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="419.0" prefWidth="150.0" BorderPane.alignment="BOTTOM_CENTER" />
+   </right>
+   <bottom>
+      <HBox prefHeight="89.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonAnterior" mnemonicParsing="false" onAction="#gerarCodigoButtonAnterior" prefHeight="50.0" prefWidth="124.0" style="-fx-font-size: 22;" stylesheets="@../styles/botoes.css" text="Anterior">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="buttonProximo" mnemonicParsing="false" onAction="#gerarCodigoButtonProximo" prefHeight="30.0" prefWidth="120.0" style="-fx-font-size: 22;" stylesheets="@../styles/botoes.css" text="Próximo">
+               <HBox.margin>
+                  <Insets left="720.0" top="10.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <left>
+      <HBox prefHeight="419.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
+   </left>
+</BorderPane>
