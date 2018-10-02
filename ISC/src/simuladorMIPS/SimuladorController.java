@@ -65,4 +65,5 @@ public class SimuladorController implements Initializable {
             file = new File("img" + ite + ".jpg");
         } while (file.exists());
     }
+    
 }
