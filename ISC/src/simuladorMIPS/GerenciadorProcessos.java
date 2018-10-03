@@ -17,7 +17,9 @@ public class GerenciadorProcessos {
 
     private final HashMap<Instrucao, Processo> entradaDeProcessos;
     private final HashMap<Instrucao, Processo> processosEmEspera;
-    private final HashMap<Etapa, Processo> processosEmExecucao;
+    private final HashMap<Integer, Processo> processosEmExecucao;
+    private ArrayList<Processo> processo;
+    private ArrayList<Instrucao> instrucao;
     //private final Memoria memoria;
 
     public GerenciadorProcessos(HashMap<Instrucao, Processo> listaEntrada, int tamanhoMemoria) {
@@ -28,13 +30,18 @@ public class GerenciadorProcessos {
        // this.memoria = new Memoria(tamanhoMemoria);
 
     }
-
+    public void identificarProcesso(ArrayList processos){
+         for (int i = 0; i < processo.size(); i++) {
+            if(processos.get(i).equals(processos.get(i+1))){
+                
+            }
+         }
+    }
     public void percorreProcessos() {
 
-        for (int i = 0; i < entradaDeProcessos.size(); i++) {
-            Processo processo;
-            if(){
-            }
+        for (int i = 0; i < processo.size(); i++) {
+            Processo processoTest = processo.get(i) ;
+            processosEmExecucao.put(i, processoTest);
             if (processo.getTempoCheg() == tempoClock) {
                 processosEmEspera.add(processo);
                 processosDeEntrada.remove(i);
