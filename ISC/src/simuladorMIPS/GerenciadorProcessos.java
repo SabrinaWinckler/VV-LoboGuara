@@ -8,6 +8,7 @@ package simuladorMIPS;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  *
@@ -15,93 +16,69 @@ import java.util.HashMap;
  */
 public class GerenciadorProcessos {
 
-    private final HashMap<Instrucao, Processo> entradaDeProcessos;
-    private final HashMap<Instrucao, Processo> processosEmEspera;
-    private final HashMap<Integer, Processo> processosEmExecucao;
-    private ArrayList<Processo> processo;
-    private ArrayList<Instrucao> instrucao;
+    private List<Processo> processosEmExecucao;
+    private List<Processo> processosEmEspera;
+    private List<Processo> processosEntrada;
+    private List<Instrucao> instrucao;
+    private Processador execucao;
     //private final Memoria memoria;
 
-    public GerenciadorProcessos(HashMap<Instrucao, Processo> listaEntrada, int tamanhoMemoria) {
+    public GerenciadorProcessos() {
 
-        this.entradaDeProcessos = listaEntrada;
-        this.processosEmEspera = new HashMap();
-        this.processosEmExecucao = new HashMap();
+        
        // this.memoria = new Memoria(tamanhoMemoria);
 
     }
-    public void identificarProcesso(ArrayList processos){
-         for (int i = 0; i < processo.size(); i++) {
-            if(processos.get(i).equals(processos.get(i+1))){
-                
+    public void identificarPosicaoProcesso(ArrayList processos){
+         for (int i = 0; i < processosEntrada.size() ; i++) {
+            if(processos.get(i).equals(processos.get(i+5))){     
             }
          }
     }
     public void percorreProcessos() {
-
-        for (int i = 0; i < processo.size(); i++) {
-            Processo processoTest = processo.get(i) ;
-            processosEmExecucao.put(i, processoTest);
-            if (processo.getTempoCheg() == tempoClock) {
-                processosEmEspera.add(processo);
-                processosDeEntrada.remove(i);
-                //Retorna um no contador para não pular nenhum processo da lista
-                i--;
-            } else {
-                /*A lista de entrada está sempre ordenada por tempo de chegada
-                então para otimização se o tempo não é igual ao tempo de clock 
-                não é necessário percorrer toda a lista*/
-                break;
-            }
-        }
-
-    }
-
-    public void insereProcesso(Instrucao i, Processo processo, Etapa posicao) {
-      //  memoria.inserirProcesso(processo, posicao);
-        processosEmExecucao.put(i, processo);
+        for (int i = 0; i < execucao.getEtapas().length ; i++) {
+            
+            
+            
+        
+         }
         
     }
 
-    public boolean executarProcessos() {
+    public void insereProcesso(Instrucao i, Processo processo) {
+      //  memoria.inserirProcesso(processo, posicao);
+        processosEmExecucao.add(processo);
+        
+    }
 
-        boolean removeuAlgumProcesso = false;
+    public void executarProcessos() {
 
-        for (int i = processosEmExecucao.size() - 1; i >= 0; i--) {
-            Processo processo = processosEmExecucao.get(i);
-            processo.executar();
-            if (processo.getTempoExec() == 0) {
-                removerProcessoFinalizado(processo);
-                removeuAlgumProcesso = true;
-            }
-        }
-
-        return removeuAlgumProcesso;
+        
 
     }
 
-    public void removerProcessoFinalizado(Processo processo) {
 
-        memoria.removerProcesso(processo, processo.getPosicaoMemoria());
-        processosEmExecucao.remove(processo);
-
-    }
-
-    public ArrayList<Processo> getProcessosEmEspera() {
+    public List<Processo> getProcessosEmEspera() {
         return processosEmEspera;
     }
 
-    public Memoria getMemoria() {
-        return memoria;
+    public Processador getExecucao() {
+        return execucao;
     }
 
-    public boolean finalizou() {
+    public void processoFinalizado(Processo processoRegistrado) {
 
-        if (processosDeEntrada.size() == 0 && processosEmEspera.size() == 0
-                && processosEmExecucao.size() == 0) {
-            return true;
+        if (execucao.getEtapas()[5].equals(processoRegistrado)) {
+            for(int i = 0; i < processosEntrada.size(); i++){
+                if(processosEntrada.get(i).equals(processoRegistrado)){
+                   processosEntrada.get(i).setRegistrado(true);
+                   execucao.removerProcesso(i);
+                   processosEmExecucao.remove(i);
+                }
+            }
+           
         }
-        return false;
+        
     }
 
 }

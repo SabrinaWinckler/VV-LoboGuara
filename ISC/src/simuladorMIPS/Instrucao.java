@@ -10,13 +10,10 @@ package simuladorMIPS;
  * @author Sabrina Winckler
  */
 public class Instrucao {// Não tenho certeza se devemos modelar assim esta classe, talvez não seja necessário!
-    private final String add = "manipulacao";
-    private final String O = "memoria";
-    private final String lw = "memoria";
-    private final String and = "manipulacao";
-    private final String sub = "manipulacao";
+    private String nome;
 
-    public Instrucao() {
+    public Instrucao(String nom) {
+        this.nome = nom;
     }
     
 }

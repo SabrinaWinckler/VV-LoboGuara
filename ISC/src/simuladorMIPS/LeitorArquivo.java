@@ -20,11 +20,12 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+
 /**
  *
  * @author Lucas
  */
-public class LeitorArquivo {
+public class LeitorArquivo {//REFATORAR!
 
     private static File arquivo;
     private static int quantidadeProcessos;
@@ -33,7 +34,7 @@ public class LeitorArquivo {
 
         JFileChooser chooser = new JFileChooser();
         
-        FileFilter filter = new FileNameExtensionFilter("Arquivo CSV", "csv");
+        FileFilter filter = new FileNameExtensionFilter("Arquivo JSON", "json");
         chooser.addChoosableFileFilter(filter);
         chooser.setAcceptAllFileFilterUsed(false);
 
@@ -68,26 +69,25 @@ public class LeitorArquivo {
             String[] entradaArray;
             String entradaString;
             String nomeProcesso;
-
-            int tamanho;
-            int tempoCheg;
-            int tempoExec;
-
+            String nomeInstrucao; 
+            ArrayList listaDeInstrucoesEProcessos = new ArrayList();
+            
+            
             while ((entradaString = br.readLine()) != null) {
+                entradaArray = entradaString.split(":");
+                nomeInstrucao = entradaArray[0];
                 entradaArray = entradaString.split(",");
                 nomeProcesso = entradaArray[0];
-                tamanho = Integer.parseInt(entradaArray[1]);
-                tempoCheg = Integer.parseInt(entradaArray[2]);
-                tempoExec = Integer.parseInt(entradaArray[3]);
+                
 
-                listaProcessos.add(new Processo(nomeProcesso, tamanho, tempoCheg, tempoExec));
+                listaProcessos.add(new Processo(nomeProcesso));
             }
 
         } catch (IOException ex) {
             Logger.getLogger(LeitorArquivo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        Collections.sort(listaProcessos, (Processo o1, Processo o2) -> o1.getTempoCheg() - o2.getTempoCheg());
+       
         LeitorArquivo.quantidadeProcessos = listaProcessos.size();
         return listaProcessos;
     }
