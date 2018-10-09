@@ -1,0 +1,22 @@
+{
+	listaInstrucoes:[
+		{
+
+		instrucao: "add",
+		processo: [
+				{
+				nome: "R1",
+				registrado: false
+				}
+				{
+				nome: "R2",
+				registrado: true
+				}
+				{
+				nome: "R3",
+				registrado: true
+				}
+			]
+		}
+	]
+}
